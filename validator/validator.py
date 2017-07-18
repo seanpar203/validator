@@ -77,6 +77,6 @@ class BaseValidator:
 				self._errors[key].append(err)
 
 
-class Validator(metaclass=DeclarativeFieldsMetaclass, BaseValidator):
+class Validator(BaseValidator, metaclass=DeclarativeFieldsMetaclass):
 	""" Class used to define custom Validator classes. """
 	pass
