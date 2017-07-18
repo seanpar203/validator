@@ -5,8 +5,6 @@ from typing import Any
 
 from validator.fields import Field, DeclarativeFieldsMetaclass
 
-__all__ = ('Validator',)
-
 
 class BaseValidator:
 	""" Base validation class, handles all logic. """
@@ -57,6 +55,10 @@ class BaseValidator:
 				continue
 			else:
 				self._validate_field(field, key, val)
+
+	# ------------------------------------------
+	# Private Methods
+	# ------------------------------------------
 
 	def _validate_field(self, field: Field, key: str, val: Any) -> None:
 		""" Validates a field by running value through validators.
