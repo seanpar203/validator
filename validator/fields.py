@@ -2,6 +2,10 @@ from collections import OrderedDict
 
 
 class DeclarativeFieldsMetaclass(type):
+	"""
+	Metaclass for removing declared Fields from Validator instances.
+	"""
+
 	def __new__(mcs, name, bases, attrs):
 		# Collect fields from current class.
 		current_fields = []
@@ -18,5 +22,5 @@ class DeclarativeFieldsMetaclass(type):
 class Field:
 	""" Validation Field. """
 
-	def __init__(self, validators=()) -> None:
+	def __init__(self, validators: tuple = ()) -> None:
 		self.validators = validators
