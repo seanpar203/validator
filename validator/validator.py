@@ -1,8 +1,5 @@
 import copy
 from collections import defaultdict
-
-from typing import Any
-
 from validator.fields import Field, DeclarativeFieldsMetaclass
 
 
@@ -41,42 +38,20 @@ class BaseValidator:
 		"""
 		return not self.errors
 
-	def full_validate(self):
-		""" Runs full validation against all defined Fields.
-
-		:return:
-		"""
+	def full_validate(self) -> None:
+		""" Runs full validation against all defined Fields. """
 		self._errors = defaultdict(list)
 
 		for key, val in self.data.items():
 			try:
-				field = self.fields[key]
+				field: Field = self.fields[key]
 			except KeyError:
 				continue
 			else:
-				self._validate_field(field, key, val)
+				errors: list = field.validate(val)
 
-	# ------------------------------------------
-	# Private Methods
-	# ------------------------------------------
-
-	def _validate_field(self, field: Field, key: str, val: Any) -> None:
-		""" Validates a field by running value through validators.
-
-		:param field: The validator field
-		:type field: Field
-
-		:param key: The key value for data & field.
-		:type key: str
-
-		:param val: The value of the data to pass into validators.
-		:type val: Any
-		"""
-		for validator in field.validators:
-			passed, err = validator(val)
-
-			if not passed:
-				self._errors[key].append(err)
+				if errors:
+					self._errors[key].append(err for err in errors)
 
 
 class Validator(BaseValidator, metaclass=DeclarativeFieldsMetaclass):
