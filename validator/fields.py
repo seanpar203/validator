@@ -1,3 +1,4 @@
+from typing import Any
 from collections import OrderedDict
 
 
@@ -24,3 +25,22 @@ class Field:
 
 	def __init__(self, validators: tuple = ()) -> None:
 		self.validators = validators
+
+	def validate(self, val: Any) -> list:
+		""" Validates value by passing into all validators
+
+		:param val: Value to pass into validators
+		:type val: Any
+
+		:return: Errors or empty list.
+		:rtype: list
+		"""
+		errors: list = []
+
+		for validator in self.validators:
+			passed, err = validator(val)
+
+			if not passed:
+				errors.append(err)
+
+		return errors
