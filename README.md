@@ -2,6 +2,10 @@
 A simple way to validate dictionary values by using functions.
 
 
+# Installation
+`pip3 install simple-validator`
+
+
 # Usage
 There are 2 main classes to create custom validation classes(`Field`, `Validator`).
 
