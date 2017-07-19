@@ -1,4 +1,4 @@
-import copy
+from typing import DefaultDict, Dict
 from collections import defaultdict
 from validator.fields import Field, DeclarativeFieldsMetaclass
 
@@ -8,8 +8,8 @@ class BaseValidator:
 
 	def __init__(self, data: dict) -> None:
 		self.data = data
-		self._errors = None
-		self.fields = copy.deepcopy(self.declared_fields)
+		self._errors: DefaultDict[str, list] = defaultdict(list)
+		self.fields: Dict[str, Field] = self.declared_fields  # type: ignore
 
 	# ------------------------------------------
 	# Properties
@@ -40,7 +40,7 @@ class BaseValidator:
 
 	def full_validate(self) -> None:
 		""" Runs full validation against all defined Fields. """
-		self._errors = defaultdict(list)
+		self._errors: DefaultDict[str, list] = defaultdict(list)
 
 		for key, val in self.data.items():
 			try:

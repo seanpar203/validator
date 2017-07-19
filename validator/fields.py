@@ -7,7 +7,7 @@ class DeclarativeFieldsMetaclass(type):
 	Metaclass for removing declared Fields from Validator instances.
 	"""
 
-	def __new__(mcs, name, bases, attrs) ->:
+	def __new__(mcs, name, bases, attrs):
 		# Collect fields from current class.
 		current_fields = []
 		for key, value in list(attrs.items()):
