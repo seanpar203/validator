@@ -3,6 +3,7 @@ from typing import Callable, Tuple, Dict, Any
 # Constant Type.
 validator_tuple = Tuple[bool, str]
 
+
 class TestValidators:
     """ Utility class for storing validators that return False. """
 
