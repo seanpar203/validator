@@ -70,7 +70,7 @@ else:
 The `Field` class has a `data_type` parameter which should be used to validate a field value
 before passing it into validators.
 
-This prevents from having try, except, else blocks inside of validator functions because your guaranteed
+This prevents from having `try, except, else` blocks inside of validator functions because your guaranteed
 it won't be passed into validators until it's the correct type.
 
 **If the field value is the wrong type, it will ony return an error like the one below**
