@@ -1,43 +1,30 @@
-from typing import Dict, Any
-from validator import Validator
-from validator.fields import Field
-
-import pytest
-
-from tests.utils import TestValidators, user_test_data, UserValidator
+from validator import Field
+from tests.utils.fixtures import user_validator
 
 
-@pytest.fixture
-def validator():
-    """
-    Used to simplify test cased and reduce verbosity.
-    """
-    return UserValidator(user_test_data)
-
-
-def test_declared_fields_being_removed(validator):
+def test_declared_fields_being_removed(user_validator):
     """
     This tests that declared fields are removed from the object.
     """
-    assert getattr(validator, 'email', None) is None
-    assert getattr(validator, 'age', None) is None
-    assert getattr(validator, 'height', None) is None
+    assert getattr(user_validator, 'email', None) is None
+    assert getattr(user_validator, 'age', None) is None
+    assert getattr(user_validator, 'height', None) is None
 
 
-def test_declared_fields_in_fields_attr(validator):
+def test_declared_fields_in_fields_attr(user_validator):
     """
     This tests that fields contain the key names of defined Fields.
     """
-    assert len(validator.fields) == 3
-    assert 'email' in validator.fields
-    assert 'age' in validator.fields
-    assert 'height' in validator.fields
+    assert len(user_validator.fields) == 3
+    assert 'email' in user_validator.fields
+    assert 'age' in user_validator.fields
+    assert 'height' in user_validator.fields
 
 
-def test_Field_as_values_in_fields_attr(validator):
+def test_Field_as_values_in_fields_attr(user_validator):
     """
-    This tests that Validators.fields.values() are all Fields.
+    This tests that user_validators.fields.values() are all Fields.
     """
-    values = [val for val in validator.fields.values()]
+    values = [val for val in user_validator.fields.values()]
     for val in values:
         assert isinstance(val, Field)
