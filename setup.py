@@ -1,7 +1,7 @@
 from distutils.core import setup
 
 setup(
-    name='dict-validator',
+    name='simple-validator',
     version='1.0.0',
     packages=['validator'],
     url='https://github.com/seanpar203/validator',
