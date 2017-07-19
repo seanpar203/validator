@@ -3,3 +3,9 @@ user_data = {
     'age':    26,
     'height': 72
 }
+
+invalid_user_data = {
+    'email':  'seandoe.com',
+    'age':    '26',
+    'height': 72.00
+}

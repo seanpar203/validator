@@ -14,3 +14,11 @@ def test_field_validator_functions(user_validator):
     email_field = user_validator.fields['email']
 
     assert TestValidators.is_email in email_field.validators
+
+
+def test_field_attribute_after_validation(user_validator):
+    assert getattr(user_validator, 'email', None) is None
+
+    user_validator.is_valid()
+
+    assert user_validator.email == user_validator.data['email']
