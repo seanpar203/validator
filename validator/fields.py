@@ -52,10 +52,11 @@ class Field:
             errors.append(f"'{val}' is expected to be a '{formatted}'")
             return errors
 
-        for validator in self.validators:
-            passed, err = validator(val)
+        else:
+            for validator in self.validators:
+                passed, err = validator(val)
 
-            if not passed:
-                errors.append(err)
+                if not passed:
+                    errors.append(err)
 
-        return errors
+            return errors
