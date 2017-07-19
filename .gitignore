@@ -12,6 +12,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+.mypy_cache/
 
 # Eclipse Core
 .project
