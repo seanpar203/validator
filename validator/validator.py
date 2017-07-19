@@ -1,4 +1,4 @@
-from typing import DefaultDict, Dict
+from typing import DefaultDict
 from collections import defaultdict
 from validator.fields import Field, DeclarativeFieldsMetaclass
 
@@ -50,7 +50,9 @@ class BaseValidator:
                 errors: list = field.validate(val)
 
                 if errors:
-                    self._errors[key].append(err for err in errors)
+                    self._errors[key].extend(errors)
+            finally:
+                setattr(self, key, val)
 
 
 class Validator(BaseValidator, metaclass=DeclarativeFieldsMetaclass):

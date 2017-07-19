@@ -1,6 +1,14 @@
 from typing import Any
 from collections import OrderedDict
 
+FORMATTED_TYPE_NAMES = {
+    'str':   'String',
+    'int':   'Integer',
+    'list':  'List',
+    'float': 'Float',
+    'dict':  'Dictionary'
+}
+
 
 class DeclarativeFieldsMetaclass(type):
     """
@@ -40,7 +48,8 @@ class Field:
         errors: list = []
 
         if self.data_type and type(val) != self.data_type:
-            errors.append(f"'{val}' is expected to be a '{self.data_type}'")
+            formatted = FORMATTED_TYPE_NAMES[self.data_type.__name__]
+            errors.append(f"'{val}' is expected to be a '{formatted}'")
             return errors
 
         for validator in self.validators:
