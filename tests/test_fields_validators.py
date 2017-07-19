@@ -6,8 +6,6 @@ def test_field_validator_functions(user_validator):
     """
     This test makes sure that the defined functions are present.
     """
-    email_field = user_validator.field['email']
-    age_field = user_validator.field['age']
-    height_field = user_validator.field['height']
+    email_field = user_validator.fields['email']
 
-    assert TestValidators.is_email in == False
+    assert TestValidators.is_email in email_field.validators
