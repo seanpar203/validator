@@ -15,8 +15,9 @@ class DeclarativeFieldsMetaclass(type):
                 current_fields.append((key, value))
                 attrs.pop(key)
 
+        attrs['fields'] = OrderedDict(current_fields)
+
         new_class = super().__new__(mcs, name, bases, attrs)
-        new_class.fields = OrderedDict(current_fields)
         return new_class
 
 
