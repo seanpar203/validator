@@ -39,7 +39,7 @@ class Field:
         errors: list = []
 
         if self.data_type and type(val) != self.data_type:
-            errors.append(f"{val} is expected to be a {self.data_type}")
+            errors.append(f"'{val}' is expected to be a '{self.data_type}'")
             return errors
 
         for validator in self.validators:
