@@ -1,6 +1,6 @@
 import pytest
 
-from .data import user_data, invalid_user_data
+from . import data
 from .validators import UserValidator
 
 
@@ -9,7 +9,7 @@ def user_validator():
     """
     Valid user validator.
     """
-    return UserValidator(user_data)
+    return UserValidator(data.user_data)
 
 
 @pytest.fixture
@@ -17,4 +17,12 @@ def invalid_user_validator():
     """
     Invalid user validator.
     """
-    return UserValidator(invalid_user_data)
+    return UserValidator(data.invalid_user_data)
+
+
+@pytest.fixture
+def missing_user_validator():
+    """
+    Missing data user validator.
+    """
+    return UserValidator(data.missing_email_data)

@@ -9,3 +9,8 @@ invalid_user_data = {
     'age':    '26',
     'height': 72.00
 }
+
+missing_email_data = {
+    'age':    25,
+    'height': 72
+}

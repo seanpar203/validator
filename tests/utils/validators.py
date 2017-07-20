@@ -9,7 +9,8 @@ class UserValidator(Validator):
     """
     email = Field(
         data_type=str,
-        validators=[TestValidators.is_email]
+        validators=[TestValidators.is_email],
+        required=True
     )
     age = Field(
         data_type=int,
