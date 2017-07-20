@@ -34,7 +34,7 @@ setup(
     author_email='seanpatrick2013@gmail.com',
     long_description=long_description,
     description='A simple way to validate dictionary values by using functions.',
-    download_url='https://github.com/seanpar203/validator/archive/1.0.2.tar.gz',
+    download_url='https://github.com/seanpar203/validator/archive/{}.tar.gz'.format(version),
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'License :: OSI Approved :: MIT License',
