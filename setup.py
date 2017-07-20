@@ -13,7 +13,7 @@ def open_local(paths, mode='r', encoding='utf8'):
     return codecs.open(path, mode, encoding)
 
 
-with open_local(['sanic', '__init__.py'], encoding='latin1') as fp:
+with open_local(['validator', '__init__.py'], encoding='latin1') as fp:
     try:
         version = re.findall(r"^__version__ = '([^']+)'\r?$",
                              fp.read(), re.M)[0]
@@ -25,7 +25,7 @@ with open_local(['README.rst']) as rm:
 
 setup(
     name='simple-validator',
-    version='1.0.0',
+    version='1.0.2',
     packages=['validator'],
     platforms='any',
     url='https://github.com/seanpar203/validator',
@@ -34,7 +34,7 @@ setup(
     author_email='seanpatrick2013@gmail.com',
     long_description=long_description,
     description='A simple way to validate dictionary values by using functions.',
-    download_url='https://github.com/seanpar203/validator/archive/1.0.1.tar.gz',
+    download_url='https://github.com/seanpar203/validator/archive/1.0.2.tar.gz',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'License :: OSI Approved :: MIT License',
