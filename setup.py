@@ -25,7 +25,7 @@ with open_local(['README.rst']) as rm:
 
 setup(
     name='simple-validator',
-    version='1.0.2',
+    version=version,
     packages=['validator'],
     platforms='any',
     url='https://github.com/seanpar203/validator',

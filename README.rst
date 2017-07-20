@@ -53,11 +53,31 @@ are valid.
     else:
         print(user.errors)
 
+Required Fields
+---------------
+To make a ``Field`` required, all that needs to be done is add ``required=True`` as a kwarg
+to the definition
+
+If the field isn't present it will be added to ```Validator.errors`` under the key for the declared Field
+that is set to required.
+
+.. code:: python
+
+   class UserValidator(Validator):
+        """ Validates a user dictionary. """
+
+        email = Field(
+            data_type=str,
+            validators=[is_valid_email],
+            required=True
+        )
+
 Errors
 ------
 The ``Validator.errors`` attribute is a ``defaultdict(list)``.
 
-When validators don't pass, the declared field(Ex: 'email', 'password' etc..) errors gets populated with the return error string from the validator.
+When validators don't pass, the declared field(Ex: 'email', 'password' etc..) errors
+gets populated with the return error string from the validator or required errors if the data is missing.
 
 .. code:: python
 
