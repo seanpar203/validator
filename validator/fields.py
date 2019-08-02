@@ -54,6 +54,29 @@ class Field:
         self.validators = validators
         self.required = required
 
+    def validate_type(self, val: Any):
+        """ Validates field data type
+
+        :param val: Value passed for checking
+        :type val: Any
+
+        :return: error message if any
+        """
+        err = None
+
+        # A single valid data type
+        if (type(self.data_type) != list) and (type(val) != self.data_type):
+            formatted = FORMATTED_TYPE_NAMES[self.data_type.__name__]
+            err = "'{}' is expected to be a '{}'".format(val,
+                                                         formatted)
+
+        # Multiple valid types are passed as a list
+        elif (type(self.data_type) == list) and (type(val) not in self.data_type):
+               error_msg = " or ".join([FORMATTED_TYPE_NAMES[t.__name__] for t in self.data_type])
+               err = "'{}' is expected to be a '{}'".format(val, error_msg)
+
+        return err
+
     def validate(self, val: Any) -> list:
         """ Validates value by passing into all validators
 
@@ -65,18 +88,17 @@ class Field:
         """
         errors: list = []
 
-        if self.data_type and type(val) != self.data_type:
-            formatted = FORMATTED_TYPE_NAMES[self.data_type.__name__]
-            errors.append(
-                "'{}' is expected to be a '{}'".format(val, formatted)
-            )
-            return errors
+        if self.data_type:
+            err_msg = self.validate_type(val)
 
-        else:
-            for validator in self.validators:
-                passed, err = validator(val)
+            if err_msg:	# There was an error
+                errors.append(err_msg)
+                return errors
 
-                if not passed:
-                    errors.append(err)
+        for validator in self.validators:
+            passed, err = validator(val)
 
-            return errors
+            if not passed:
+                errors.append(err)
+
+        return errors

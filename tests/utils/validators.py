@@ -17,6 +17,6 @@ class UserValidator(Validator):
         validators=[TestValidators.is_gt_than(10)]
     )
     height = Field(
-        data_type=int,
+        data_type=[int, float],
         validators=[TestValidators.is_gt_but_lt(50, 90)]
     )
