@@ -122,6 +122,20 @@ it won't be passed into validators until it's the correct type.
         # "'1' is expected to be a 'String'"
 
 
+You can optionally pass multiple valid data types for a field as a list. As
+long as the data matches one of the valid types, it will be accepted.
+
+.. code:: python
+
+   class HeightValidator(Validator):
+
+        height = Field(
+            data_type=[int, float],
+            validators=[is_valid_height],
+            required=True
+        )
+
+
 .. |PyPI| image:: https://img.shields.io/pypi/v/simple-validator.svg
    :target: https://pypi.python.org/pypi/simple-validator/
 

@@ -7,7 +7,7 @@ user_data = {
 invalid_user_data = {
     'email':  'seandoe.com',
     'age':    '26',
-    'height': 72.00
+    'height': 92.00
 }
 
 missing_email_data = {
